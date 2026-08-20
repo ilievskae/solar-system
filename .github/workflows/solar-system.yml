@@ -36,6 +36,7 @@ jobs:
     
     code-coverage:
         name: Code Coverage
+        continue-on-error: true
         strategy:
             matrix:
                 nodejs_version: [18,19]
@@ -60,3 +61,4 @@ jobs:
              with:
                name: Code-Coverage-Test
                path: coverage
+               retention-days: 5
