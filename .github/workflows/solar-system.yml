@@ -33,3 +33,30 @@ jobs:
               with:
                 name: Mocha-Test_Result
                 path: test-results.xml
+    
+    code-coverage:
+        name: Code Coverage
+        strategy:
+            matrix:
+                nodejs_version: [18,19]
+        runs-on: ubuntu-latest
+        steps:
+           - name: Checkout Repo
+             uses: actions/checkout@v7
+
+           - name: Setup NodeJs Version - $ {{ matrix.nodejs_version }}
+             uses: actions/setup-node@v4
+             with:
+                node-version: ${{ matrix.nodejs_version }}
+
+           - name: Install Dependencies
+             run: npm install
+
+           - name: Check Code Coverage
+             run: npm run coverage
+
+           - name: Archive Test Results
+             uses: actions/upload-artifact@v4
+             with:
+               name: Code-Coverage-Test
+               path: coverage
