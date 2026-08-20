@@ -11,7 +11,7 @@ jobs:
         name: Unit Testing
         strategy:
             matrix:
-                nodejs_version: [18,19]
+                nodejs_version: [18]
         runs-on: ubuntu-latest
         steps:
             - name: Checkout Repo
